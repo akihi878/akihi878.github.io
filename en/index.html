@@ -3,22 +3,23 @@
     <head>
 	<meta name="generator" content="Hugo 0.126.1"><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Example description">
-<title>Example Site</title>
+<title>Alvarez&#39;s Blog</title>
 
 <link rel='canonical' href='https://akihi878.github.io/en/'>
 
-<link rel="stylesheet" href="/scss/style.min.56f5b77bc80baa55b837bd6ab6d3f6dcf806980b0b1bbc5ad815e6b6d050b26d.css"><meta property='og:title' content="Example Site">
+<link rel="stylesheet" href="/scss/style.min.8d7b3a87d225179960e94eb39bf5112e24aef18ff075fa7c1e89791ed3ea1ebe.css"><meta property='og:title' content="Alvarez's Blog">
 <meta property='og:description' content="Example description">
 <meta property='og:url' content='https://akihi878.github.io/en/'>
-<meta property='og:site_name' content='Example Site'>
+<meta property='og:site_name' content='Alvarez&#39;s Blog'>
 <meta property='og:type' content='website'>
-<meta name="twitter:title" content="Example Site">
+<meta name="twitter:title" content="Alvarez's Blog">
 <meta name="twitter:description" content="Example description"><link rel="alternate" type="application/rss&#43;xml" href="https://akihi878.github.io/en/index.xml">
-    <link rel="shortcut icon" href="/favicon.ico" />
+<link rel="shortcut icon" href="/favicon.ico" />
 
   
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade">
     </head>
     <body class="">
     <script>
@@ -73,7 +74,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/en">Example Site</a></h1>
+            <h1 class="site-name"><a href="/en">Alvarez&#39;s Blog</a></h1>
             <h2 class="site-description">那些听不见音乐的人以为跳舞的人疯了.</h2>
         </div>
     </header><ol class="menu-social">
@@ -134,7 +135,7 @@
             
                 <li>
                     <a 
-                        href='mailto:korita@reincarnatey.net'
+                        href='mailto:akihi16@163.com'
                         target="_blank"
                         title="Email"
                         rel="me"
@@ -284,29 +285,53 @@
   
   
   
-      <section class="article-list">
-          
-      </section>
-  
-  
+
     <section class="article-list">
         
     </section>
 <footer class="site-footer">
     <section class="copyright">
-        &copy; 
+        &copy;
         
-            2020 - 
-        
-        2024 Example Person
+        2024 Alvarez
     </section>
+
     
+    <section class="running-time">
+        本博客已稳定运行
+        <span id="runningdays" class="running-days"></span>
+    </section>
+
+    
+    <section class="totalcount">
+
+        
+        
+        &#9924发表了0篇文章 ·
+        
+        &#9997总计0.00k字
+
+
+        
+
+        <div class="busuanzi-footer">
+            <span id="busuanzi_container_site_pv">
+                本站访问量<span id="busuanzi_value_site_pv"></span>次 | 
+            </span>
+            <span id="busuanzi_container_site_uv">
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </span>
+        </div></section>
+
+
+
+
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+                data-version="3.26.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
-
             </main>
         </div>
         <script 
@@ -324,6 +349,20 @@
 
         document.head.appendChild(customFont);
     }());
+</script>
+
+<script>
+    let s1 = '2023-3-18'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>

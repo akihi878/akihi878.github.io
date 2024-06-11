@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://akihi878.github.io/post/leetcode12/'>
 
-<link rel="stylesheet" href="/scss/style.min.56f5b77bc80baa55b837bd6ab6d3f6dcf806980b0b1bbc5ad815e6b6d050b26d.css"><meta property='og:title' content="Leetcode12">
+<link rel="stylesheet" href="/scss/style.min.8d7b3a87d225179960e94eb39bf5112e24aef18ff075fa7c1e89791ed3ea1ebe.css"><meta property='og:title' content="Leetcode12">
 <meta property='og:description' content="两数之和&amp;三数之和 167.两数之和 II - 输入有序数组:fire: 1 2 3 4 5 6 7 8 9 10 11 class Solution { public: vector&lt;int&gt; twoSum(vector&lt;int&gt; &amp;numbers, int target) { int left = 0, right = numbers.size() - 1; for (;;) { // left &lt; right int s = numbers[left] + numbers[right]; if (s == target) return {left + 1, right + 1}; s &gt; target ? --right : ++left; } } }; 总结 若是暴力做法，直接是n方的复杂度，但是需要用上有序列表的条件；">
 <meta property='og:url' content='https://akihi878.github.io/post/leetcode12/'>
 <meta property='og:site_name' content='Alvarez&#39;s Blog'>
@@ -14,11 +14,12 @@
 <meta name="twitter:title" content="Leetcode12">
 <meta name="twitter:description" content="两数之和&amp;三数之和 167.两数之和 II - 输入有序数组:fire: 1 2 3 4 5 6 7 8 9 10 11 class Solution { public: vector&lt;int&gt; twoSum(vector&lt;int&gt; &amp;numbers, int target) { int left = 0, right = numbers.size() - 1; for (;;) { // left &lt; right int s = numbers[left] + numbers[right]; if (s == target) return {left + 1, right + 1}; s &gt; target ? --right : ++left; } } }; 总结 若是暴力做法，直接是n方的复杂度，但是需要用上有序列表的条件；"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://akihi878.github.io/post/leetcode12/cover.png' />
-    <link rel="shortcut icon" href="/favicon.ico" />
+<link rel="shortcut icon" href="/favicon.ico" />
 
   
 
-
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade">
     </head>
     <body class="
     article-page
@@ -495,19 +496,65 @@
 
     <footer class="site-footer">
     <section class="copyright">
-        &copy; 
+        &copy;
         
-            2020 - 
-        
-        2024 Example Person
+        2024 Alvarez
     </section>
+
     
+    <section class="running-time">
+        本博客已稳定运行
+        <span id="runningdays" class="running-days"></span>
+    </section>
+
+    
+    <section class="totalcount">
+
+        
+        
+        &#9924发表了5篇文章 ·
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        &#9997总计0.53k字
+
+
+        
+
+        <div class="busuanzi-footer">
+            <span id="busuanzi_container_site_pv">
+                本站访问量<span id="busuanzi_value_site_pv"></span>次 | 
+            </span>
+            <span id="busuanzi_container_site_uv">
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </span>
+        </div></section>
+
+
+
+
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+                data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
-
 
     
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -604,6 +651,20 @@
 
         document.head.appendChild(customFont);
     }());
+</script>
+
+<script>
+    let s1 = '2023-3-18'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
 </script>
 
     </body>
