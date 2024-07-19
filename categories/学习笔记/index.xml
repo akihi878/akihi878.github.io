@@ -6,6 +6,366 @@
         <description>Recent content in 学习笔记 on Alvarez&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>Alvarez</copyright><atom:link href="https://akihi878.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+        <copyright>Alvarez</copyright>
+        <lastBuildDate>Sun, 16 Jun 2024 14:27:12 +0800</lastBuildDate><atom:link href="https://akihi878.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>MSYS2安装git并配置ssh</title>
+        <link>https://akihi878.github.io/post/msys2%E5%AE%89%E8%A3%85git%E5%B9%B6%E9%85%8D%E7%BD%AEssh/</link>
+        <pubDate>Sun, 16 Jun 2024 14:27:12 +0800</pubDate>
+        
+        <guid>https://akihi878.github.io/post/msys2%E5%AE%89%E8%A3%85git%E5%B9%B6%E9%85%8D%E7%BD%AEssh/</guid>
+        <description>&lt;h1 id=&#34;msys2安装git和配置ssh&#34;&gt;MSYS2安装git和配置ssh
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;安装git和配置ssh&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;使用 &lt;a class=&#34;link&#34; href=&#34;https://so.csdn.net/so/search?q=msys2&amp;amp;spm=1001.2101.3001.7020&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;msys2&lt;/a&gt; 意味着需要删除 git bash， 原因是 git for windows 是基于 msys2 的， 两者都装容易冲突。 安装 msys2 后可以用包管理工具 &lt;code&gt;pacman&lt;/code&gt; 安装 &lt;code&gt;git&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;安装git&#34;&gt;安装git
+&lt;/h2&gt;&lt;p&gt;建议直接使用msys2提供的git兼容性更好.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pacman -S git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;从别的博主的&lt;a class=&#34;link&#34; href=&#34;https://ttys3.dev/blog/windows-terminal-msys2-mingw64-setup&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;博文&lt;/a&gt;学来一个git实用(装Bility)工具onefetch（ &lt;a class=&#34;link&#34; href=&#34;https://github.com/o2sh/onefetch&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/o2sh/onefetch&lt;/a&gt; ）&lt;/p&gt;
+&lt;p&gt;它将直接在终端中展示本地 Git 仓库的项目详情和代码统计等内容。工具完全离线可用（不需要网络连接)&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pacman -S mingw-w64-ucrt-x86_64-onefetch
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;查看git版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;安装成功&lt;/p&gt;
+&lt;h2 id=&#34;使用ssh配置git仓库链接&#34;&gt;使用ssh配置git仓库链接
+&lt;/h2&gt;&lt;h3 id=&#34;ssh安装&#34;&gt;SSH安装
+&lt;/h3&gt;&lt;p&gt;win10后面的版本基本上自带了openssh.&lt;/p&gt;
+&lt;p&gt;如若没有，可以直接在系统可选功能中找到并下载&lt;img src=&#34;https://image-host-for-sxy.oss-cn-hangzhou.aliyuncs.com/img0/image-20240603211733940.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240603211733940&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://image-host-for-sxy.oss-cn-hangzhou.aliyuncs.com/img0/image-20240602200720304.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240602200720304&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://image-host-for-sxy.oss-cn-hangzhou.aliyuncs.com/img0/image-20240602200731141.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240602200731141&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://image-host-for-sxy.oss-cn-hangzhou.aliyuncs.com/img0/image-20240602213631258.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240602213631258&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;安装即可&lt;/p&gt;
+&lt;h3 id=&#34;查看ssh位置&#34;&gt;查看SSH位置
+&lt;/h3&gt;&lt;p&gt;可以直接在msys2 中随意挑选一个环境进入（如UCRT64）里使用ssh 这个命令， 如果你用which 查一下，就能发现ssh.exe它的位置是：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ which ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/c/Windows/System32/OpenSSH/ssh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;也就是 &lt;code&gt;C:\Windows\System32\OpenSSH\ssh.exe&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查阅相关资料发现，若是前面我们通过pacman安装git时会默认安装依赖openssh, 因此，openssh的ssh客户端会有比windows自带的优先级更高.&lt;/p&gt;
+&lt;p&gt;此时再查找会发现在usr目录下了，根据&lt;a class=&#34;link&#34; href=&#34;https://www.msys2.org/docs/environments/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Msys官网&lt;/a&gt;，这就是usr就是msys的目录，其他环境比如ucrt64可以调用它的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ which ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/usr/bin/ssh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;打开命令提示符或 Powershell，执行以下命令来检查 OpenSSH 客户端是否已经正确安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://image-host-for-sxy.oss-cn-hangzhou.aliyuncs.com/img0/image-20240616120335891.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240616120335891&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;查看版本&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -V
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果返回的版本号显示SSH已成功安装，则表示一切正常。您现在可以在Windows系统上使用SSH进行远程连接和管理。&lt;/p&gt;
+&lt;p&gt;此时ssh已经安装完毕了，可以配置密钥来连接了&lt;/p&gt;
+&lt;h3 id=&#34;创建-ssh-个人配置文件&#34;&gt;创建 SSH 个人配置文件
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;主要是需要找到.ssh文件夹，没找到就新建&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;查看是否已经有密钥&lt;/p&gt;
+&lt;p&gt;输入 &lt;code&gt;ls -al ~/.ssh&lt;/code&gt; 以查看是否存在现有的 SSH 密钥，没有自然要新建了。&lt;/p&gt;
+&lt;p&gt;有两个主要的SSH配置文件：用户级别的~/.ssh/config和系统级别的/etc/ssh/ssh_config。了解并正确配置这两个文件可以大大提高SSH连接的速度和可靠性。当您安装 SSH 时，您将自动创建一个 ~/.ssh 目录。这直接包含你的公钥、私钥一个known_hosts文件。您的配置也存储在这里。在 Ubuntu 上，默认情况下不会创建 SSH 配置文件。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;~/.ssh&lt;/code&gt;和&lt;code&gt;~/.ssh/config&lt;/code&gt; 很重要，几乎所有ssh相关的操作都相关。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用户级别的配置文件：~/.ssh/config&lt;/strong&gt;
+这个文件通常位于用户的主目录下，是专为单个用户优化的SSH配置。你可以在其中为特定的主机或主机组设置连接参数，如端口号、用户名、密码等。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host 			别名
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HostName	 	主机名
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Port 			端口
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;User 			用户名
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IdentityFile 	密钥文件的路径
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IdentitiesOnly 	只接受SSH key 登录
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PreferredAuthentications 强制使用Public Key验证
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Host myserver
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HostName mydomain.com
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;User username
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Port 2222
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;在这个例子中，我们为名为&lt;code&gt;myserver&lt;/code&gt;的主机设置了特定的用户名和端口号。当你通过SSH连接到&lt;code&gt;myserver&lt;/code&gt;时，它将使用这些特定的参数进行连接。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在msys中，我找了很久都没有找到这个隐藏文件夹.ssh，就连在用ssh配置github生成密钥的时候，也没有直接建立出.ssh。查了好久，最后自己创建了.ssh文件夹，将密钥文件放进去了。&lt;/p&gt;
+&lt;p&gt;然后config也没有，也是自己新建然后查阅后配置了密钥&lt;/p&gt;
+&lt;p&gt;最后我是放在了&lt;strong&gt;C:\msys64\home\Alvarez\ssh&lt;/strong&gt;中的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;​	如果文件 &lt;code&gt;~/.ssh/config&lt;/code&gt; 不存在，您可以继续创建它。通常，此文件存在于 &lt;code&gt;.ssh&lt;/code&gt;&lt;strong&gt;“隐藏”目录&lt;/strong&gt;中，隐藏只是因为大多数操作系统不显示以 &lt;code&gt;.&lt;/code&gt; 开头的目录。此外，该目录通常位于一个人的主目录或运行 ssh 的用户的主目录中，因此 &lt;code&gt;~&lt;/code&gt; 符号表示主目录。&lt;/p&gt;
+&lt;p&gt;​&lt;/p&gt;
+&lt;h3 id=&#34;配置-ssh-秘钥&#34;&gt;配置 SSH 秘钥
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;根据 &lt;a class=&#34;link&#34; href=&#34;https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;github 文档&lt;/a&gt;，在客户端创建SSH公钥和私钥对，并将私钥添加到客户端的 ssh-agent 中。记得将所给代码改成自己的user地址&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;将公钥配置在 github 的相应账户中&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;验证配置连接&#34;&gt;验证配置连接
+&lt;/h3&gt;&lt;p&gt;测试配置是否成功&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -T git@github.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果看到如下结果，则证明配置成功，否则需要根据错误消息进行修改。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Hi yourusername! You’ve successfully authenticated, but GitHub does not provide shell access.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;参考&#34;&gt;参考
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.thisfaner.com/p/ssh-agent/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ssh agent详解&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.soulchild.cn/post/2893/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;为什么 ssh-agent 需要使用 eval 来运行&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://hanpanpan200.github.io/2019/10/14/setup-multiple-git-accounts-by-ssh-config/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;通过 ssh config 配置 Git 多账户 SSH 登录&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;附录&#34;&gt;附录
+&lt;/h2&gt;&lt;h3 id=&#34;参考文献&#34;&gt;参考文献
+&lt;/h3&gt;&lt;h3 id=&#34;版权信息&#34;&gt;版权信息
+&lt;/h3&gt;&lt;p&gt;本文原载于[Alvarez&amp;rsquo;s Blog](&lt;a class=&#34;link&#34; href=&#34;https://akihi878.github.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Alvarez&amp;rsquo;s Blog (akihi878.github.io)&lt;/a&gt;)，遵循CC BY-NC-SA 4.0协议，复制请保留原文出处。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>终端</title>
+        <link>https://akihi878.github.io/post/%E7%BB%88%E7%AB%AF/</link>
+        <pubDate>Sun, 16 Jun 2024 14:23:15 +0800</pubDate>
+        
+        <guid>https://akihi878.github.io/post/%E7%BB%88%E7%AB%AF/</guid>
+        <description>&lt;h1 id=&#34;终端和shell&#34;&gt;终端和shell
+&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;学习笔记&lt;/p&gt;
+&lt;p&gt;参考别人的博客&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;为什么我要使用Windows Terminal而不是PowerShell？&lt;/li&gt;
+&lt;li&gt;我不需要WSL（Windows Subsystem for Linux）来使用bash，我使用Cygwin。&lt;/li&gt;
+&lt;li&gt;我能使用带着PowerShell内核的ConEmu吗？还是说我需要使用Windows Terminal？&lt;/li&gt;
+&lt;li&gt;终端和shell关系？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;让我们先来澄清几个相关专业术语的概念。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;终端只负责提供一个输出和输入的环境，而shell负责把你的操作或者命令解释成机器码传递给系统内核执行最后再返回结果给终端 然后终端再显示给你看&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;一linux-介绍&#34;&gt;一、Linux 介绍
+&lt;/h2&gt;&lt;h3 id=&#34;1什么是-linux&#34;&gt;1、什么是 Linux
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;Linux 就是一个操作系统，全称 GNU/Linux，是一种类 Unix 操作系统&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	Linux 一开始是没有图形界面的，所有操作都靠命令完成。如 “磁盘操作、文件存取、目录操作、进程管理、文件权限” 等等，可以说 Linux 就是由命令行组成的操作系统。&lt;/p&gt;
+&lt;p&gt;​	大家更熟悉的 Windows 系统，一般用户都是在纯图形化界面下进行操作的，依靠鼠标和键盘操作，上手比较简单。&lt;/p&gt;
+&lt;p&gt;​	现在的 Linux 兼具图形化界面操作和完全的命令行操作，但 命令行操作 仍然是 Linux 的 精髓 所在，命令行下只用键盘就能完成所有操作。&lt;/p&gt;
+&lt;h3 id=&#34;2linux-的两个基本思想&#34;&gt;2、Linux 的两个基本思想
+&lt;/h3&gt;&lt;p&gt;一切皆文件
+每个文件都有确定的用途&lt;/p&gt;
+&lt;h2 id=&#34;二终端-和-shell&#34;&gt;&lt;strong&gt;二、终端 和 Shell&lt;/strong&gt;
+&lt;/h2&gt;&lt;p&gt;​    学习 Linux 一定会经常碰到&lt;strong&gt;终端&lt;/strong&gt;和&lt;strong&gt;shell&lt;/strong&gt;，在 Ubuntu 系统下点击鼠标右键 - “打开终端” 就能打开一个终端窗口，接着我们就能输入命令了。&lt;/p&gt;
+&lt;p&gt;进入黑黑的那个框并不是 shell！！！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;终端 和 shell 是两个不同的概念&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;终端是 terminal，而 shell 的意思是 “壳&amp;quot;，这两个怎么看都不会是同一个东西。&lt;/p&gt;
+&lt;h3 id=&#34;1什么是终端terminal&#34;&gt;1、什么是终端（Terminal）
+&lt;/h3&gt;&lt;p&gt;​	终端是与计算机系统相连的一种&lt;strong&gt;输入、输出设备&lt;/strong&gt;，通常离计算机较远 。终端就是人与计算机交互的接口。Unix 和 Linux 把这些&lt;strong&gt;人机交互的接口&lt;/strong&gt;统称为 —— 终端。&lt;/p&gt;
+&lt;p&gt;​	可以简单将终端理解为 “鼠标、键盘、显示器、扬声器、麦克风” 等硬件设备。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;【早期的终端】&lt;/strong&gt;
+早期的终端是一种叫做 电传打字机 - Teletype 的东西。当时还没有个人电脑，普通的计算机都有衣柜那么大，而且很昂贵，人手一台的可能性很低。但是一个用户占有一台计算机未免有点浪费，为了提高计算机的使用效率，Unix 的创始人 Ken Thompson 和 Dennis Ritchie 打算设计一个能够支持多用户进行操作的操作系统（也就是现在的 Unix），实现将一台计算机提供给多位用户进行使用。&lt;/p&gt;
+&lt;p&gt;​	想要实现多用户操作，首先需要给每位用户提供一套基本的输入输出设备来进行操作。但是当时的计算机设备都非常昂贵，每位用户人手一套的话费用也忒高了。所以最后他们找到了更便宜的 电传打字机 来作为替代，也就是下图的 ASR-33 电传打字机。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://image-host-for-sxy.oss-cn-hangzhou.aliyuncs.com/img0/image-20240615230331640.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240615230331640&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以看出它有&lt;strong&gt;键盘&lt;/strong&gt;和&lt;strong&gt;纸带&lt;/strong&gt;，用户可以通过键盘向计算机&lt;strong&gt;输入&lt;/strong&gt;信息，然后计算机通过在纸带上打印&lt;strong&gt;输出&lt;/strong&gt;结果。这样看来，电传打字机完全可以作为人机交互设备使用。&lt;/p&gt;
+&lt;p&gt;​    于是 Unix 成为了世界上第一个支持多用户的操作系统，而 ASR-33 成为了第一个 Unix 终端&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;【现在的终端】&lt;/strong&gt;
+随着计算机快速发展，其硬件设备也越来越便宜且先进。像电传打字机这样的早期终端设备早已退出历史舞台，取而代之的是 键盘、鼠标、显示器 等设备。&lt;/p&gt;
+&lt;p&gt;​	虽然现在电传打字机已经不再适用，但它也是计算机发展的一个重要象征。所以 &lt;strong&gt;Teletype&lt;/strong&gt; 的缩写 &lt;strong&gt;TTY&lt;/strong&gt; 沿用至今，作为各种类型的终端设备的统称。（我们现在看到的 tty 不再单纯指电传打字机，而是指各种各样的终端设备）&lt;/p&gt;
+&lt;p&gt;台式机的终端输入设备包括：键盘、鼠标、麦克风；终端输出设备包括：显示器、扬声器&lt;/p&gt;
+&lt;h3 id=&#34;2linux-终端&#34;&gt;2、Linux 终端
+&lt;/h3&gt;&lt;p&gt;​       为什么 Linux 上的终端和上面说的终端感觉不太一样呢 ？&lt;/p&gt;
+&lt;p&gt;​	 实际上，前面我们说的终端指的都是物理的终端设备，而我们在 Linux 上常说的终端其实是 &lt;strong&gt;终端模拟器 - Terminal Emulator&lt;/strong&gt;（一种 模拟终端的程序 ），也称为 —— 虚拟终端 ，但平时一般直接称为终端。可以将 Linux 终端看作一个使用软件来模拟的输入、输出设备，其作用就是提供一个命令的输入、输出环境。&lt;strong&gt;Linux 终端是基于物理终端之上的&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;在 Linux 操作系统中，为了让多个用户登录系统进行操作，或&lt;strong&gt;打开多个窗口执行多个任务&lt;/strong&gt;，Linux 设置了多个虚拟终端设备。&lt;/p&gt;
+&lt;p&gt;在 Linux 下 Ctrl + Alt + t 即可打开终端（Ctrl + d 关闭终端）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;【终端模拟器出现的原因】&lt;/strong&gt;
+电传打字机时代是没有图形接口的，计算机直接从打字机读取用户的输入，然后自动将计算结果打印到纸带，是非常典型的命令行操作模式。随着计算机发展，出现了各种各样的图形接口，很多操作系统也以图形界面操作为主。大部分的程序都能通过图形接口进行交互，但是仍然存在一些传统的命令行程序还不兼容图形接口，只能通过命令行进行交互。&lt;/p&gt;
+&lt;p&gt;​	但是现在已经没有电传打字机了，这些传统程序不能直接读取用户的键盘输入，也不能将计算结果直接输出到显示器（比如我们现在返回电脑桌面，随便在键盘上输入一些命令，是不会有什么反应的），这种情况下我们要如何运行这些程序呢？—— 【终端模拟器】&lt;/p&gt;
+&lt;p&gt;​	终端模拟器就是一个&lt;strong&gt;模拟传统终端设备进行命令行操作的程序&lt;/strong&gt;。在该程序内输入的命令能够被计算机读取和执行，并将结果输出到显示器。简单来说，终端模拟器就是模拟了一台电传打字机，所以我们一般也直接称之为终端。&lt;/p&gt;
+&lt;p&gt;​	当我们在软件意义上提到终端时，我们指的是 TTY 或 硬件终端 的文字软件版本，也就是&lt;strong&gt;负责输入输出命令行&lt;/strong&gt;的东西。&lt;a class=&#34;link&#34; href=&#34;https://link.zhihu.com/?target=https%3A//docs.microsoft.com/zh-cn/windows/terminal/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Windows 终端&lt;/a&gt;就是其中之一。它非常善于显示文本输出，也可以接受输入并将其传递下去。但是终端并不“聪明”，因为它&lt;strong&gt;实际上并不对你的输入做任何处理&lt;/strong&gt;，也不会看你的文件或进行任何”思考“，它只负责接收输入和显示输出，负责处理你输入信息的另有其人。&lt;/p&gt;
+&lt;h3 id=&#34;3console控制台&#34;&gt;3.CONSOLE（控制台）
+&lt;/h3&gt;&lt;p&gt;在20世纪中期，人们的起居室里会有一种家具，叫做控制台或陈列柜。而在计算机领域，控制台指的是计算机的操控台或者一个内置屏幕和键盘的机柜，但它本质上仍是一个终端（计算机领域）。&lt;/p&gt;
+&lt;p&gt;​	从（计算机）技术上讲，控制台是硬件设备，而终端则是其内部运行的软件程序。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;而在软件世界中提到控制台和终端时，它们实际上是同义词。（例如IDE和编辑器中的内置终端，也叫控制台&lt;/strong&gt;)&lt;/p&gt;
+&lt;h2 id=&#34;4shell操作系统外壳区别于操作系统内核&#34;&gt;4.Shell（操作系统外壳，区别于操作系统内核）
+&lt;/h2&gt;&lt;p&gt;​	 Shell 指 “提供给使用者使用界面” 的软件，即 Command Interpreter - 命令解析器。Shell 接收用户或者其他应用程序的命令，然后将这些命令转化成内核能够理解的语言并传递给内核，内核执行命令完成后，再将执行结果返回给用户或者应用程序。&lt;/p&gt;
+&lt;p&gt;​	Shell 是包裹在操作系统 外层 的一道程序，负责外界与 Linux “内核” 的交互，但它隐藏了操作系统底层的具体细节，就像是 Linux 内核的一个 “外壳”，所以 Shell（壳）的名称也由此而来。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;图形化界面也是一种广义的 Shell，因为图形界面操作的本质也是 —— 将用户的命令传递给内核执行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;img src=&#34;https://image-host-for-sxy.oss-cn-hangzhou.aliyuncs.com/img0/image-20240615231939417.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240615231939417&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	之前提到的终端，会接受用户的输入并将其发送给另一个程序，这个应用程序就是Shell。Shell 会&lt;strong&gt;接收你通过终端/控制台输入的命令并将其&amp;quot;翻译&amp;quot;成操作系统内核可以理解的语言&lt;/strong&gt;，然后调用相应的应用程序，最后生成输出并将其传递回终端以显示给用户。这里是一些常见的shell：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;bash, fish, zsh, ksh, sh, tsch&lt;/li&gt;
+&lt;li&gt;PowerShell, cmd, pwsh&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://link.zhihu.com/?target=http%3A//www.malsmith.net/yori/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;yori&lt;/a&gt;, 4dos, command.com&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;注意：你对终端的选择不会也不应该影响你对Shell的选择，例如，理论上你可以使用Windows Terminal作为你的终端，并使用zsh作为你的Shell（这实际上不太可行，因为zsh不能很好地运行在Windows操作系统上，除非你使用WSL）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;冷知识: WSL 和 WSL2(the Windows Subsystem for Linux)是一个或多个完整的，运行在Windows 10上的本地 Linux。这些Linux系统是完整且真实的。WSL2通过虚拟技术，提供了一个真正的 Linux 内核，并在 Windows 上运行。而Cygwin不是真正的 Linux。Cygwin 是 GNU 和开源工具的一个大集合，它们提供了类似于 Windows 上的 Linux 的功能——但它不是 Linux。这是一个幻影。它是针对 Win32 编译的 GNU utils。这很不错，但重要的是你要知道它们之间的区别。Cygwin 可以让您运行 bash shell 脚本，但它不会运行 Apache、 Docker 或其他真正的 ELF-binaries 和 Linux 应用程序。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Windows操作系统带有许多Shell 比如PowerShell, cmd 或者自己MSYS2安装的zsh bash&lt;/p&gt;
+&lt;h2 id=&#34;5终端-和-shell-的区别和关联&#34;&gt;5、终端 和 Shell 的区别和关联
+&lt;/h2&gt;&lt;p&gt;终端接收命令输入，Shell 翻译并传递命令，内核执行命令。&lt;/p&gt;
+&lt;p&gt;终端 只是人机交互的一个接口，提供输入输出命令的交互界面。终端的主要任务是接收用户输入的命令，并提交给 Shell。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Shell 是命令解析器，主要任务是翻译命令&lt;/strong&gt;。Shell 将终端输入的命令转化成内核能够理解的语言并传递给内核，由内核执行命令，并将执行结果返回给终端。&lt;strong&gt;当我们打开终端时，Shell 也会自动启动，操作系统会将终端和 Shell 关联起来&lt;/strong&gt;。接着我们在终端输入命令，Shell 就负责解释命令。&lt;/p&gt;
+&lt;h1 id=&#34;some-question&#34;&gt;some question
+&lt;/h1&gt;&lt;p&gt;问：萌新请教一下:控制台或者说终端本身也是一种文件吗？也就是说类似常见的磁盘文件也有自己的编码是吗？
+举个例子，如果我要在idea里编程读取一个文本文件的内容输出到控制台，首先我确定我的待读取文件的编码是gbk的，然后我在idea的编程界面（右下角）把编码也改成gbk，然后我运行程序，发现显示在控制台的内容仍然是乱码的。其原因是否是idea的控制台采用的是utf-8？要想完成我上面的要求，是否必须保证磁盘源文件编码，代码文件编码，控制台文件编码都一致才行呢？&lt;/p&gt;
+&lt;p&gt;答：终端是一个程序，是一个可执行文件。&lt;/p&gt;
+&lt;p&gt;关于输出乱码，如果我没理解错，终端输出文本的编码取决于终端调用的shell，而非终端程序本身。&lt;/p&gt;
+&lt;p&gt;换句话说，idea的内置终端会调用你操作系统的shell，比如Windows下可能是cmd或powershell，你应该让操作系统shell和待读取文件的编码方式一致（比如都是gbk）。&lt;/p&gt;
+&lt;p&gt;至于idea右下角的编码方式，是针对你写的源代码文件，不管源文件用什么编码，编译后都是可执行文件。而你要输出的是另一个文本文件的内容，所以和源文件编码应该没关系。&lt;/p&gt;
+&lt;h2 id=&#34;reference&#34;&gt;reference
+&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/Amentos/article/details/129290846&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Linux 学习笔记（一）：终端 和 Shell 的区别和联系_shell终端-CSDN博客&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/405527391&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;翻译] 控制台（Console），终端（Terminal）和Shell之间的区别究竟是什么？ - 知乎 (zhihu.com)&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;附录&#34;&gt;附录
+&lt;/h2&gt;&lt;h3 id=&#34;参考文献&#34;&gt;参考文献
+&lt;/h3&gt;&lt;h3 id=&#34;版权信息&#34;&gt;版权信息
+&lt;/h3&gt;&lt;p&gt;本文原载于[Alvarez&amp;rsquo;s Blog](&lt;a class=&#34;link&#34; href=&#34;https://akihi878.github.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Alvarez&amp;rsquo;s Blog (akihi878.github.io)&lt;/a&gt;)，遵循CC BY-NC-SA 4.0协议，复制请保留原文出处。&lt;/p&gt;
+</description>
+        </item>
+        
     </channel>
 </rss>

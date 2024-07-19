@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="终端和shell [TOC] 学习笔记 参考别人的博客 为什么我要使用Windows Terminal而不是PowerShell？ 我不需要WSL（Windows Subsystem for Linux）来使用bash，我使用Cygwin。 我能使用带着PowerShell内核的ConEmu吗？还是说我需要使用Windows Terminal？ 终端和shell关系？ 让我们先来澄清几个相关专业术语的概念。 终端只负责提供一个输出和输入的环境，而shell负责把你的操作或者命令解释成机器码传递给系统内核执行最后再返回结果给终端 然后终端再显示给你看 一、Linux 介绍 1、什么是 Linux Linux 就是一个操作系统，全称 GNU/Linux，是一种类 Unix 操作系统 \u200b\tLinux 一开始是没有图形界面的，所有操作都靠命令完成。如 “磁盘操作、文件存取、目录操作、进程管理、文件权限” 等等，可以说 Linux 就是由命令行组成的操作系统。 \u200b\t大家更熟悉的 Windows 系统，一般用户都是在纯图形化界面下进行操作的，依靠鼠标和键盘操作，上手比较简单。 \u200b\t现在的 Linux 兼具图形化界面操作和完全的命令行操作，但 命令行操作 仍然是 Linux 的 精髓 所在，命令行下只用键盘就能完成所有操作。 2、Linux 的两个基本思想 一切皆文件 每个文件都有确定的用途 二、终端 和 Shell \u200b 学习 Linux 一定会经常碰到终端和shell，在 Ubuntu 系统下点击鼠标右键 - “打开终端” 就能打开一个终端窗口，接着我们就能输入命令了。 进入黑黑的那个框并不是 shell！！！ 终端 和 shell 是两个不同的概念。 终端是 terminal，而 shell 的意思是 “壳&quot;，这两个怎么看都不会是同一个东西。">
+<title>终端</title>
+
+<link rel='canonical' href='https://akihi878.github.io/post/%E7%BB%88%E7%AB%AF/'>
+
+<link rel="stylesheet" href="/scss/style.min.8d7b3a87d225179960e94eb39bf5112e24aef18ff075fa7c1e89791ed3ea1ebe.css"><meta property='og:title' content="终端">
+<meta property='og:description' content="终端和shell [TOC] 学习笔记 参考别人的博客 为什么我要使用Windows Terminal而不是PowerShell？ 我不需要WSL（Windows Subsystem for Linux）来使用bash，我使用Cygwin。 我能使用带着PowerShell内核的ConEmu吗？还是说我需要使用Windows Terminal？ 终端和shell关系？ 让我们先来澄清几个相关专业术语的概念。 终端只负责提供一个输出和输入的环境，而shell负责把你的操作或者命令解释成机器码传递给系统内核执行最后再返回结果给终端 然后终端再显示给你看 一、Linux 介绍 1、什么是 Linux Linux 就是一个操作系统，全称 GNU/Linux，是一种类 Unix 操作系统 \u200b\tLinux 一开始是没有图形界面的，所有操作都靠命令完成。如 “磁盘操作、文件存取、目录操作、进程管理、文件权限” 等等，可以说 Linux 就是由命令行组成的操作系统。 \u200b\t大家更熟悉的 Windows 系统，一般用户都是在纯图形化界面下进行操作的，依靠鼠标和键盘操作，上手比较简单。 \u200b\t现在的 Linux 兼具图形化界面操作和完全的命令行操作，但 命令行操作 仍然是 Linux 的 精髓 所在，命令行下只用键盘就能完成所有操作。 2、Linux 的两个基本思想 一切皆文件 每个文件都有确定的用途 二、终端 和 Shell \u200b 学习 Linux 一定会经常碰到终端和shell，在 Ubuntu 系统下点击鼠标右键 - “打开终端” 就能打开一个终端窗口，接着我们就能输入命令了。 进入黑黑的那个框并不是 shell！！！ 终端 和 shell 是两个不同的概念。 终端是 terminal，而 shell 的意思是 “壳&quot;，这两个怎么看都不会是同一个东西。">
+<meta property='og:url' content='https://akihi878.github.io/post/%E7%BB%88%E7%AB%AF/'>
+<meta property='og:site_name' content='Alvarez&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Shell' /><meta property='article:tag' content='MSYS2' /><meta property='article:published_time' content='2024-06-16T14:23:15&#43;08:00'/><meta property='article:modified_time' content='2024-06-16T14:23:15&#43;08:00'/>
+<meta name="twitter:title" content="终端">
+<meta name="twitter:description" content="终端和shell [TOC] 学习笔记 参考别人的博客 为什么我要使用Windows Terminal而不是PowerShell？ 我不需要WSL（Windows Subsystem for Linux）来使用bash，我使用Cygwin。 我能使用带着PowerShell内核的ConEmu吗？还是说我需要使用Windows Terminal？ 终端和shell关系？ 让我们先来澄清几个相关专业术语的概念。 终端只负责提供一个输出和输入的环境，而shell负责把你的操作或者命令解释成机器码传递给系统内核执行最后再返回结果给终端 然后终端再显示给你看 一、Linux 介绍 1、什么是 Linux Linux 就是一个操作系统，全称 GNU/Linux，是一种类 Unix 操作系统 \u200b\tLinux 一开始是没有图形界面的，所有操作都靠命令完成。如 “磁盘操作、文件存取、目录操作、进程管理、文件权限” 等等，可以说 Linux 就是由命令行组成的操作系统。 \u200b\t大家更熟悉的 Windows 系统，一般用户都是在纯图形化界面下进行操作的，依靠鼠标和键盘操作，上手比较简单。 \u200b\t现在的 Linux 兼具图形化界面操作和完全的命令行操作，但 命令行操作 仍然是 Linux 的 精髓 所在，命令行下只用键盘就能完成所有操作。 2、Linux 的两个基本思想 一切皆文件 每个文件都有确定的用途 二、终端 和 Shell \u200b 学习 Linux 一定会经常碰到终端和shell，在 Ubuntu 系统下点击鼠标右键 - “打开终端” 就能打开一个终端窗口，接着我们就能输入命令了。 进入黑黑的那个框并不是 shell！！！ 终端 和 shell 是两个不同的概念。 终端是 terminal，而 shell 的意思是 “壳&quot;，这两个怎么看都不会是同一个东西。">
+<link rel="shortcut icon" href="/favicon.ico" />
+
+  
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended">
+
+
+        <div id="article-toolbar" style="position: sticky;top: 5px;z-index: 1000;">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>返回</span>
+            </a>
+        </div>
+    
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#一linux-介绍">一、Linux 介绍</a>
+      <ol>
+        <li><a href="#1什么是-linux">1、什么是 Linux</a></li>
+        <li><a href="#2linux-的两个基本思想">2、Linux 的两个基本思想</a></li>
+      </ol>
+    </li>
+    <li><a href="#二终端-和-shell"><strong>二、终端 和 Shell</strong></a>
+      <ol>
+        <li><a href="#1什么是终端terminal">1、什么是终端（Terminal）</a></li>
+        <li><a href="#2linux-终端">2、Linux 终端</a></li>
+        <li><a href="#3console控制台">3.CONSOLE（控制台）</a></li>
+      </ol>
+    </li>
+    <li><a href="#4shell操作系统外壳区别于操作系统内核">4.Shell（操作系统外壳，区别于操作系统内核）</a></li>
+    <li><a href="#5终端-和-shell-的区别和关联">5、终端 和 Shell 的区别和关联</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#reference">reference</a></li>
+    <li><a href="#附录">附录</a>
+      <ol>
+        <li><a href="#参考文献">参考文献</a></li>
+        <li><a href="#版权信息">版权信息</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" style="background-color: #2a9d8f; color: #fff;">
+                学习笔记
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/%E7%BB%88%E7%AB%AF/">终端</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 69 161623</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 2 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="终端和shell">终端和shell
+</h1><p>[TOC]</p>
+<blockquote>
+<p>学习笔记</p>
+<p>参考别人的博客</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>为什么我要使用Windows Terminal而不是PowerShell？</li>
+<li>我不需要WSL（Windows Subsystem for Linux）来使用bash，我使用Cygwin。</li>
+<li>我能使用带着PowerShell内核的ConEmu吗？还是说我需要使用Windows Terminal？</li>
+<li>终端和shell关系？</li>
+</ul>
+<p>让我们先来澄清几个相关专业术语的概念。</p>
+</blockquote>
+<p><strong>终端只负责提供一个输出和输入的环境，而shell负责把你的操作或者命令解释成机器码传递给系统内核执行最后再返回结果给终端 然后终端再显示给你看</strong></p>
+<h2 id="一linux-介绍">一、Linux 介绍
+</h2><h3 id="1什么是-linux">1、什么是 Linux
+</h3><p><strong>Linux 就是一个操作系统，全称 GNU/Linux，是一种类 Unix 操作系统</strong></p>
+<p>​	Linux 一开始是没有图形界面的，所有操作都靠命令完成。如 “磁盘操作、文件存取、目录操作、进程管理、文件权限” 等等，可以说 Linux 就是由命令行组成的操作系统。</p>
+<p>​	大家更熟悉的 Windows 系统，一般用户都是在纯图形化界面下进行操作的，依靠鼠标和键盘操作，上手比较简单。</p>
+<p>​	现在的 Linux 兼具图形化界面操作和完全的命令行操作，但 命令行操作 仍然是 Linux 的 精髓 所在，命令行下只用键盘就能完成所有操作。</p>
+<h3 id="2linux-的两个基本思想">2、Linux 的两个基本思想
+</h3><p>一切皆文件
+每个文件都有确定的用途</p>
+<h2 id="二终端-和-shell"><strong>二、终端 和 Shell</strong>
+</h2><p>​    学习 Linux 一定会经常碰到<strong>终端</strong>和<strong>shell</strong>，在 Ubuntu 系统下点击鼠标右键 - “打开终端” 就能打开一个终端窗口，接着我们就能输入命令了。</p>
+<p>进入黑黑的那个框并不是 shell！！！</p>
+<p><strong>终端 和 shell 是两个不同的概念</strong>。</p>
+<p>终端是 terminal，而 shell 的意思是 “壳&quot;，这两个怎么看都不会是同一个东西。</p>
+<h3 id="1什么是终端terminal">1、什么是终端（Terminal）
+</h3><p>​	终端是与计算机系统相连的一种<strong>输入、输出设备</strong>，通常离计算机较远 。终端就是人与计算机交互的接口。Unix 和 Linux 把这些<strong>人机交互的接口</strong>统称为 —— 终端。</p>
+<p>​	可以简单将终端理解为 “鼠标、键盘、显示器、扬声器、麦克风” 等硬件设备。</p>
+<p><strong>【早期的终端】</strong>
+早期的终端是一种叫做 电传打字机 - Teletype 的东西。当时还没有个人电脑，普通的计算机都有衣柜那么大，而且很昂贵，人手一台的可能性很低。但是一个用户占有一台计算机未免有点浪费，为了提高计算机的使用效率，Unix 的创始人 Ken Thompson 和 Dennis Ritchie 打算设计一个能够支持多用户进行操作的操作系统（也就是现在的 Unix），实现将一台计算机提供给多位用户进行使用。</p>
+<p>​	想要实现多用户操作，首先需要给每位用户提供一套基本的输入输出设备来进行操作。但是当时的计算机设备都非常昂贵，每位用户人手一套的话费用也忒高了。所以最后他们找到了更便宜的 电传打字机 来作为替代，也就是下图的 ASR-33 电传打字机。</p>
+<p><img src="https://image-host-for-sxy.oss-cn-hangzhou.aliyuncs.com/img0/image-20240615230331640.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240615230331640"
+	
+	
+></p>
+<p>可以看出它有<strong>键盘</strong>和<strong>纸带</strong>，用户可以通过键盘向计算机<strong>输入</strong>信息，然后计算机通过在纸带上打印<strong>输出</strong>结果。这样看来，电传打字机完全可以作为人机交互设备使用。</p>
+<p>​    于是 Unix 成为了世界上第一个支持多用户的操作系统，而 ASR-33 成为了第一个 Unix 终端</p>
+<p><strong>【现在的终端】</strong>
+随着计算机快速发展，其硬件设备也越来越便宜且先进。像电传打字机这样的早期终端设备早已退出历史舞台，取而代之的是 键盘、鼠标、显示器 等设备。</p>
+<p>​	虽然现在电传打字机已经不再适用，但它也是计算机发展的一个重要象征。所以 <strong>Teletype</strong> 的缩写 <strong>TTY</strong> 沿用至今，作为各种类型的终端设备的统称。（我们现在看到的 tty 不再单纯指电传打字机，而是指各种各样的终端设备）</p>
+<p>台式机的终端输入设备包括：键盘、鼠标、麦克风；终端输出设备包括：显示器、扬声器</p>
+<h3 id="2linux-终端">2、Linux 终端
+</h3><p>​       为什么 Linux 上的终端和上面说的终端感觉不太一样呢 ？</p>
+<p>​	 实际上，前面我们说的终端指的都是物理的终端设备，而我们在 Linux 上常说的终端其实是 <strong>终端模拟器 - Terminal Emulator</strong>（一种 模拟终端的程序 ），也称为 —— 虚拟终端 ，但平时一般直接称为终端。可以将 Linux 终端看作一个使用软件来模拟的输入、输出设备，其作用就是提供一个命令的输入、输出环境。<strong>Linux 终端是基于物理终端之上的</strong>。</p>
+<p>在 Linux 操作系统中，为了让多个用户登录系统进行操作，或<strong>打开多个窗口执行多个任务</strong>，Linux 设置了多个虚拟终端设备。</p>
+<p>在 Linux 下 Ctrl + Alt + t 即可打开终端（Ctrl + d 关闭终端）</p>
+<p><strong>【终端模拟器出现的原因】</strong>
+电传打字机时代是没有图形接口的，计算机直接从打字机读取用户的输入，然后自动将计算结果打印到纸带，是非常典型的命令行操作模式。随着计算机发展，出现了各种各样的图形接口，很多操作系统也以图形界面操作为主。大部分的程序都能通过图形接口进行交互，但是仍然存在一些传统的命令行程序还不兼容图形接口，只能通过命令行进行交互。</p>
+<p>​	但是现在已经没有电传打字机了，这些传统程序不能直接读取用户的键盘输入，也不能将计算结果直接输出到显示器（比如我们现在返回电脑桌面，随便在键盘上输入一些命令，是不会有什么反应的），这种情况下我们要如何运行这些程序呢？—— 【终端模拟器】</p>
+<p>​	终端模拟器就是一个<strong>模拟传统终端设备进行命令行操作的程序</strong>。在该程序内输入的命令能够被计算机读取和执行，并将结果输出到显示器。简单来说，终端模拟器就是模拟了一台电传打字机，所以我们一般也直接称之为终端。</p>
+<p>​	当我们在软件意义上提到终端时，我们指的是 TTY 或 硬件终端 的文字软件版本，也就是<strong>负责输入输出命令行</strong>的东西。<a class="link" href="https://link.zhihu.com/?target=https%3A//docs.microsoft.com/zh-cn/windows/terminal/"  target="_blank" rel="noopener"
+    >Windows 终端</a>就是其中之一。它非常善于显示文本输出，也可以接受输入并将其传递下去。但是终端并不“聪明”，因为它<strong>实际上并不对你的输入做任何处理</strong>，也不会看你的文件或进行任何”思考“，它只负责接收输入和显示输出，负责处理你输入信息的另有其人。</p>
+<h3 id="3console控制台">3.CONSOLE（控制台）
+</h3><p>在20世纪中期，人们的起居室里会有一种家具，叫做控制台或陈列柜。而在计算机领域，控制台指的是计算机的操控台或者一个内置屏幕和键盘的机柜，但它本质上仍是一个终端（计算机领域）。</p>
+<p>​	从（计算机）技术上讲，控制台是硬件设备，而终端则是其内部运行的软件程序。</p>
+<p><strong>而在软件世界中提到控制台和终端时，它们实际上是同义词。（例如IDE和编辑器中的内置终端，也叫控制台</strong>)</p>
+<h2 id="4shell操作系统外壳区别于操作系统内核">4.Shell（操作系统外壳，区别于操作系统内核）
+</h2><p>​	 Shell 指 “提供给使用者使用界面” 的软件，即 Command Interpreter - 命令解析器。Shell 接收用户或者其他应用程序的命令，然后将这些命令转化成内核能够理解的语言并传递给内核，内核执行命令完成后，再将执行结果返回给用户或者应用程序。</p>
+<p>​	Shell 是包裹在操作系统 外层 的一道程序，负责外界与 Linux “内核” 的交互，但它隐藏了操作系统底层的具体细节，就像是 Linux 内核的一个 “外壳”，所以 Shell（壳）的名称也由此而来。</p>
+<ul>
+<li>
+<p>图形化界面也是一种广义的 Shell，因为图形界面操作的本质也是 —— 将用户的命令传递给内核执行</p>
+</li>
+<li>
+<p><img src="https://image-host-for-sxy.oss-cn-hangzhou.aliyuncs.com/img0/image-20240615231939417.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240615231939417"
+	
+	
+></p>
+</li>
+</ul>
+<p>​	之前提到的终端，会接受用户的输入并将其发送给另一个程序，这个应用程序就是Shell。Shell 会<strong>接收你通过终端/控制台输入的命令并将其&quot;翻译&quot;成操作系统内核可以理解的语言</strong>，然后调用相应的应用程序，最后生成输出并将其传递回终端以显示给用户。这里是一些常见的shell：</p>
+<ul>
+<li>bash, fish, zsh, ksh, sh, tsch</li>
+<li>PowerShell, cmd, pwsh</li>
+<li><a class="link" href="https://link.zhihu.com/?target=http%3A//www.malsmith.net/yori/"  target="_blank" rel="noopener"
+    >yori</a>, 4dos, command.com</li>
+</ul>
+<p>注意：你对终端的选择不会也不应该影响你对Shell的选择，例如，理论上你可以使用Windows Terminal作为你的终端，并使用zsh作为你的Shell（这实际上不太可行，因为zsh不能很好地运行在Windows操作系统上，除非你使用WSL）</p>
+<blockquote>
+<p>冷知识: WSL 和 WSL2(the Windows Subsystem for Linux)是一个或多个完整的，运行在Windows 10上的本地 Linux。这些Linux系统是完整且真实的。WSL2通过虚拟技术，提供了一个真正的 Linux 内核，并在 Windows 上运行。而Cygwin不是真正的 Linux。Cygwin 是 GNU 和开源工具的一个大集合，它们提供了类似于 Windows 上的 Linux 的功能——但它不是 Linux。这是一个幻影。它是针对 Win32 编译的 GNU utils。这很不错，但重要的是你要知道它们之间的区别。Cygwin 可以让您运行 bash shell 脚本，但它不会运行 Apache、 Docker 或其他真正的 ELF-binaries 和 Linux 应用程序。</p>
+</blockquote>
+<p>Windows操作系统带有许多Shell 比如PowerShell, cmd 或者自己MSYS2安装的zsh bash</p>
+<h2 id="5终端-和-shell-的区别和关联">5、终端 和 Shell 的区别和关联
+</h2><p>终端接收命令输入，Shell 翻译并传递命令，内核执行命令。</p>
+<p>终端 只是人机交互的一个接口，提供输入输出命令的交互界面。终端的主要任务是接收用户输入的命令，并提交给 Shell。</p>
+<p><strong>Shell 是命令解析器，主要任务是翻译命令</strong>。Shell 将终端输入的命令转化成内核能够理解的语言并传递给内核，由内核执行命令，并将执行结果返回给终端。<strong>当我们打开终端时，Shell 也会自动启动，操作系统会将终端和 Shell 关联起来</strong>。接着我们在终端输入命令，Shell 就负责解释命令。</p>
+<h1 id="some-question">some question
+</h1><p>问：萌新请教一下:控制台或者说终端本身也是一种文件吗？也就是说类似常见的磁盘文件也有自己的编码是吗？
+举个例子，如果我要在idea里编程读取一个文本文件的内容输出到控制台，首先我确定我的待读取文件的编码是gbk的，然后我在idea的编程界面（右下角）把编码也改成gbk，然后我运行程序，发现显示在控制台的内容仍然是乱码的。其原因是否是idea的控制台采用的是utf-8？要想完成我上面的要求，是否必须保证磁盘源文件编码，代码文件编码，控制台文件编码都一致才行呢？</p>
+<p>答：终端是一个程序，是一个可执行文件。</p>
+<p>关于输出乱码，如果我没理解错，终端输出文本的编码取决于终端调用的shell，而非终端程序本身。</p>
+<p>换句话说，idea的内置终端会调用你操作系统的shell，比如Windows下可能是cmd或powershell，你应该让操作系统shell和待读取文件的编码方式一致（比如都是gbk）。</p>
+<p>至于idea右下角的编码方式，是针对你写的源代码文件，不管源文件用什么编码，编译后都是可执行文件。而你要输出的是另一个文本文件的内容，所以和源文件编码应该没关系。</p>
+<h2 id="reference">reference
+</h2><p><a class="link" href="https://blog.csdn.net/Amentos/article/details/129290846"  target="_blank" rel="noopener"
+    >Linux 学习笔记（一）：终端 和 Shell 的区别和联系_shell终端-CSDN博客</a></p>
+<p>[<a class="link" href="https://zhuanlan.zhihu.com/p/405527391"  target="_blank" rel="noopener"
+    >翻译] 控制台（Console），终端（Terminal）和Shell之间的区别究竟是什么？ - 知乎 (zhihu.com)</a></p>
+<h2 id="附录">附录
+</h2><h3 id="参考文献">参考文献
+</h3><h3 id="版权信息">版权信息
+</h3><p>本文原载于[Alvarez&rsquo;s Blog](<a class="link" href="https://akihi878.github.io/"  target="_blank" rel="noopener"
+    >Alvarez&rsquo;s Blog (akihi878.github.io)</a>)，遵循CC BY-NC-SA 4.0协议，复制请保留原文出处。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/shell/">Shell</a>
+        
+            <a href="/tags/msys2/">MSYS2</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/post/msys2%E5%AE%89%E8%A3%85git%E5%B9%B6%E9%85%8D%E7%BD%AEssh/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MSYS2安装git并配置ssh</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="akihi878/blog-comment"
+        issue-term="pathname"
+        
+        label="utterances"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy;
+        
+        2024 Alvarez
+    </section>
+
+    
+    <section class="running-time">
+        本博客已稳定运行
+        <span id="runningdays" class="running-days"></span>
+    </section>
+
+    
+    <section class="totalcount">
+
+        
+        
+        &#9924发表了4篇文章 ·
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        &#9997总计0.99k字
+
+
+        
+
+        <div class="busuanzi-footer">
+            <span id="busuanzi_container_site_pv">
+                本站访问量<span id="busuanzi_value_site_pv"></span>次 | 
+            </span>
+            <span id="busuanzi_container_site_uv">
+                本站访客数<span id="busuanzi_value_site_uv"></span>人次
+            </span>
+        </div></section>
+
+
+
+
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+                data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<script>
+    let s1 = '2024-5-19'; 
+    s1 = new Date(s1.replace(/-/g, "/"));
+    let s2 = new Date();
+    let timeDifference = s2.getTime() - s1.getTime();
+
+    let days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    let result = days + "天" + hours + "小时" + minutes + "分钟";
+    document.getElementById('runningdays').innerHTML = result;
+</script>
+<script>
+    (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+  
+    ChannelIO('boot', {
+      "pluginKey": "5a2fd198-8f52-44f6-b3d5-99b449f0abde"
+    });
+  </script>
+    </body>
+</html>
